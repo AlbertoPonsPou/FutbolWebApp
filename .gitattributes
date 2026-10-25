@@ -1,0 +1,13 @@
+* text=auto
+*.md text eol=lf
+*.sql text eol=lf
+*.ps1 text eol=crlf
+*.src text eol=crlf
+*.wo text eol=crlf
+*.fd text eol=crlf
+*.inc text eol=crlf
+*.sws text eol=crlf
+*.ws text eol=crlf
+*.png binary
+*.ico binary
+/Data/Filelist.cfg binary
