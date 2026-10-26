@@ -10,8 +10,10 @@ probado y guardado en DataFlex. Las tablas utilizan `utf8mb4_general_ci`,
 la intercalacion recomendada para las busquedas de DataFlex.
 Las cinco tablas internas convertibles de DataFlex ya se han migrado a MySQL y
 el login se ha comprobado con F5. `DFLastId` permanece como tabla especial local.
-La incorporacion de las tablas del futbol a DataFlex, las vistas Select/Zoom y
-las tarjetas del dashboard corresponden a las siguientes ramas de trabajo.
+Las seis tablas del futbol ya estan incorporadas al Filelist, con sus archivos
+`.int`, definiciones `.fd`, relaciones y clases DataDictionary generadas.
+Las vistas Select/Zoom y las tarjetas del dashboard corresponden a las
+siguientes ramas de trabajo.
 
 ## Requisitos
 
