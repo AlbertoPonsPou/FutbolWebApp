@@ -2,17 +2,19 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
-## Estado inicial
+## Estado del proyecto
 
 Workspace y proyecto movil creados. La plantilla inicial se ha ejecutado en el navegador.
-La base MySQL `futbol` esta creada en el equipo de desarrollo. La conexion desde
-DataFlex, la conversion de tablas, las vistas Select/Zoom y las tarjetas del dashboard
+La base MySQL `futbol` esta creada y la conexion administrada `FutbolDB` se ha
+probado y guardado en DataFlex. Las seis tablas utilizan `utf8mb4_general_ci`,
+la intercalacion recomendada para las busquedas de DataFlex.
+La conversion de tablas, las vistas Select/Zoom y las tarjetas del dashboard
 se implementaran en las siguientes ramas de trabajo.
 
 ## Requisitos
 
 - Windows con DataFlex Studio 25.0 y el entorno WebApp/IIS configurado.
-- MySQL 8 y MySQL Connector/ODBC de 64 bits para la conexion posterior.
+- MySQL 8 y MySQL Connector/ODBC Unicode de 64 bits.
 - Git.
 
 ## Abrir una copia del repositorio
@@ -38,6 +40,14 @@ con el nombre de base unificado a `futbol`. Incluye `liga`, `equipo`, `entrenado
 Al importar el script se eliminan y recrean esas tablas en `futbol`; utilizarlo
 como carga inicial, no sobre una base con cambios que se quieran conservar.
 Las conexiones y credenciales de MySQL se configuran en cada equipo y no se publican.
+
+Para configurar la conexion administrada `FutbolDB`, consultar
+[`docs/conexion-mysql.md`](docs/conexion-mysql.md). Se incluye
+`Data/DFConnId.ini.example` como referencia, con un usuario de ejemplo.
+
+Si la base ya estaba importada con la intercalacion original, el script
+`sql/02_compatibilidad_dataflex.sql` adapta las seis tablas conservando los
+registros. En el equipo de desarrollo este ajuste ya se ha comprobado.
 
 ## Flujo Git de la practica
 
