@@ -1,0 +1,8 @@
+; Referencia para crear la conexion desde SQL Connection Manager.
+; Indicar el usuario y la clave locales en el asistente de DataFlex.
+; El archivo real DFConnId.ini esta excluido de Git.
+[connection1]
+id=FutbolDB
+driver=ODBC_DRV
+connection=DRIVER={MySQL ODBC 26.10 Unicode Driver};SERVER=127.0.0.1;PORT=3306;DATABASE=futbol;CHARSET=utf8mb4
+UID=TU_USUARIO_MYSQL
