@@ -28,6 +28,9 @@ $tableGroups = @(
 )
 foreach ($tableGroup in $tableGroups) {
     foreach ($tableName in $tableGroup.Names) {
+        # Las tablas migradas se inicializan en MySQL, no desde archivos .dat.
+        $sqlTableDefinition = Join-Path (Join-Path $projectRoot 'Data') ($tableName + '.int')
+        if (Test-Path -LiteralPath $sqlTableDefinition) { continue }
         $tablePattern = '^' + [regex]::Escape($tableName) + '\.(dat|hdr|k\d+|tag)$'
         foreach ($sourceFile in (Get-ChildItem -LiteralPath $tableGroup.Source -File | Where-Object Name -Match $tablePattern)) {
             $tableDestination = Join-Path (Join-Path $projectRoot 'Data') $sourceFile.Name
