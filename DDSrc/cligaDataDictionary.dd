@@ -8,6 +8,7 @@ Class cligaDataDictionary is a DataDictionary
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to liga.File_Number
+        Set Cascade_Delete_State to False
 
         Set Add_Client_File to equipo.File_Number
 
