@@ -2,6 +2,18 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
+## Entrega del Sprint 1
+
+Version final: **v1.0.0**, validada el **30/10/2026**.
+La rama `main` contiene la entrega y `develop` conserva la integracion del desarrollo.
+
+Enlace de entrega: https://github.com/AlbertoPonsPou/FutbolWebApp
+
+Incluye cinco vistas Select, cinco vistas Zoom y cinco tarjetas de navegacion en
+el dashboard. Las pruebas de navegacion, altas, modificaciones, borrados,
+seleccion de relaciones y ventana estrecha se han confirmado manualmente.
+Los resultados se detallan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
+
 ## Estado del proyecto
 
 Workspace y proyecto movil creados. La plantilla inicial se ha ejecutado en el navegador.
@@ -17,7 +29,7 @@ jugador y posicion. El menu y las cinco tarjetas del dashboard abren sus listado
 Las fichas de equipo permiten seleccionar liga; las de entrenador y jugador permiten
 seleccionar equipo. Los identificadores de las fichas nuevas son automaticos y no editables.
 Las relaciones opcionales con equipo conservan SQL NULL cuando no se elige un equipo.
-Las pruebas funcionales recomendadas estan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
+Los resultados y el recorrido de pruebas estan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
 
 ## Requisitos
 
