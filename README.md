@@ -12,8 +12,12 @@ Las cinco tablas internas convertibles de DataFlex ya se han migrado a MySQL y
 el login se ha comprobado con F5. `DFLastId` permanece como tabla especial local.
 Las seis tablas del futbol ya estan incorporadas al Filelist, con sus archivos
 `.int`, definiciones `.fd`, relaciones y clases DataDictionary generadas.
-Las vistas Select/Zoom y las tarjetas del dashboard corresponden a las
-siguientes ramas de trabajo.
+Estan implementadas las diez vistas Select/Zoom de liga, equipo, entrenador,
+jugador y posicion. El menu y las cinco tarjetas del dashboard abren sus listados.
+Las fichas de equipo permiten seleccionar liga; las de entrenador y jugador permiten
+seleccionar equipo. Los identificadores de las fichas nuevas son automaticos y no editables.
+Las relaciones opcionales con equipo conservan SQL NULL cuando no se elige un equipo.
+Las pruebas funcionales recomendadas estan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
 
 ## Requisitos
 
