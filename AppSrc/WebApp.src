@@ -1,4 +1,4 @@
-﻿Use AllWebAppClasses.pkg
+Use AllWebAppClasses.pkg
 Use cConnection.pkg
 
 Object oApplication is a cApplication
@@ -51,6 +51,52 @@ Object oWebApp is a cWebApp
 
                 Object oViewMenu is a cWebMenuItem
                     Set psCaption to C_$View
+
+                    Object oSelectLiga_itm is a cWebMenuItem
+                        Set psCaption to "Ligas"
+
+                        WebRegisterPath ntNavigateBegin oSelectLiga
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oSelectEquipo_itm is a cWebMenuItem
+                        Set psCaption to "Equipos"
+                        WebRegisterPath ntNavigateBegin oSelectEquipo
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oSelectEntrenador_itm is a cWebMenuItem
+                        Set psCaption to "Entrenadores"
+                        WebRegisterPath ntNavigateBegin oSelectEntrenador
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oSelectJugador_itm is a cWebMenuItem
+                        Set psCaption to "Jugadores"
+                        WebRegisterPath ntNavigateBegin oSelectJugador
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
+
+                    Object oSelectPosicion_itm is a cWebMenuItem
+                        Set psCaption to "Posiciones"
+                        WebRegisterPath ntNavigateBegin oSelectPosicion
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
                 End_Object
 
                 Object oSignOut_itm is a cWebMenuItem
@@ -132,6 +178,16 @@ Object oWebApp is a cWebApp
     Use WebResourceManager.wo
     
     Use Dashboard.wo
+    Use ZoomLiga.wo
+    Use SelectLiga.wo
+    Use ZoomEquipo.wo
+    Use SelectEquipo.wo
+    Use ZoomEntrenador.wo
+    Use SelectEntrenador.wo
+    Use ZoomJugador.wo
+    Use SelectJugador.wo
+    Use ZoomPosicion.wo
+    Use SelectPosicion.wo
     Set phoDefaultView to oDashboard
 
 End_Object

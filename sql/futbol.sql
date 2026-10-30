@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `futbol` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `futbol` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `futbol`;
 -- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
 --
@@ -34,7 +34,7 @@ CREATE TABLE `entrenador` (
   UNIQUE KEY `uqEntrenadorApellidoID` (`Apellido`,`ID`) USING BTREE,
   UNIQUE KEY `uqEntrenadorEquipo` (`EquipoID`),
   CONSTRAINT `fk_entrenador_equipo` FOREIGN KEY (`EquipoID`) REFERENCES `equipo` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `equipo` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uqEquipoNombreLiga` (`LigaID`,`Nombre`),
   CONSTRAINT `fk_Equipo_LigaID` FOREIGN KEY (`LigaID`) REFERENCES `liga` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `jugador` (
   UNIQUE KEY `uqJugadorApellidoID` (`Apellido`,`ID`) USING BTREE,
   UNIQUE KEY `uqJugadorEquipoID` (`EquipoID`,`ID`),
   CONSTRAINT `fkJugadorEquipo` FOREIGN KEY (`EquipoID`) REFERENCES `equipo` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `jugadorposicion` (
   UNIQUE KEY `uqPosicionJugador` (`PosicionID`, `JugadorID`),
   CONSTRAINT `fkJPJugador` FOREIGN KEY (`JugadorID`) REFERENCES `jugador` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fkJPPosicion` FOREIGN KEY (`PosicionID`) REFERENCES `posicion` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `liga` (
   `EquiposMax` int NOT NULL DEFAULT '20',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uqLigaNombrePais` (`Nombre`,`Pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `posicion` (
   `Nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `uqPosicionNombre` (`Nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

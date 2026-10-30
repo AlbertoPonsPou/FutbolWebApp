@@ -1,0 +1,31 @@
+Use DataDict.pkg
+Use cli.pkg
+
+Open entrenador
+Open equipo
+
+Class centrenadorDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to entrenador.File_Number
+        Set Cascade_Delete_State to False
+
+        Set Add_Server_File to equipo.File_Number
+        Set ParentNullAllowed equipo.File_Number to True
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+    End_Procedure
+
+    Procedure Save_Main_File
+        Integer iEquipoField
+        Field_Map entrenador.File_Number "EquipoID" to iEquipoField
+        Set_Attribute DF_FIELD_IS_NULL of entrenador.File_Number iEquipoField to (equipo.ID = 0)
+        Forward Send Save_Main_File
+    End_Procedure
+
+End_Class

@@ -2,17 +2,39 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
-## Estado inicial
+## Entrega del Sprint 1
+
+Version final: **v1.0.0**, validada el **30/10/2026**.
+La rama `main` contiene la entrega y `develop` conserva la integracion del desarrollo.
+
+Enlace de entrega: https://github.com/AlbertoPonsPou/FutbolWebApp
+
+Incluye cinco vistas Select, cinco vistas Zoom y cinco tarjetas de navegacion en
+el dashboard. Las pruebas de navegacion, altas, modificaciones, borrados,
+seleccion de relaciones y ventana estrecha se han confirmado manualmente.
+Los resultados se detallan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
+
+## Estado del proyecto
 
 Workspace y proyecto movil creados. La plantilla inicial se ha ejecutado en el navegador.
-La base MySQL `futbol` esta creada en el equipo de desarrollo. La conexion desde
-DataFlex, la conversion de tablas, las vistas Select/Zoom y las tarjetas del dashboard
-se implementaran en las siguientes ramas de trabajo.
+La base MySQL `futbol` esta creada y la conexion administrada `FutbolDB` se ha
+probado y guardado en DataFlex. Las tablas utilizan `utf8mb4_general_ci`,
+la intercalacion recomendada para las busquedas de DataFlex.
+Las cinco tablas internas convertibles de DataFlex ya se han migrado a MySQL y
+el login se ha comprobado con F5. `DFLastId` permanece como tabla especial local.
+Las seis tablas del futbol ya estan incorporadas al Filelist, con sus archivos
+`.int`, definiciones `.fd`, relaciones y clases DataDictionary generadas.
+Estan implementadas las diez vistas Select/Zoom de liga, equipo, entrenador,
+jugador y posicion. El menu y las cinco tarjetas del dashboard abren sus listados.
+Las fichas de equipo permiten seleccionar liga; las de entrenador y jugador permiten
+seleccionar equipo. Los identificadores de las fichas nuevas son automaticos y no editables.
+Las relaciones opcionales con equipo conservan SQL NULL cuando no se elige un equipo.
+Los resultados y el recorrido de pruebas estan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
 
 ## Requisitos
 
 - Windows con DataFlex Studio 25.0 y el entorno WebApp/IIS configurado.
-- MySQL 8 y MySQL Connector/ODBC de 64 bits para la conexion posterior.
+- MySQL 8 y MySQL Connector/ODBC Unicode de 64 bits.
 - Git.
 
 ## Abrir una copia del repositorio
@@ -20,13 +42,17 @@ se implementaran en las siguientes ramas de trabajo.
 1. Clonar el repositorio en una carpeta local.
 2. Ejecutar `scripts/Initialize-Local.ps1` desde PowerShell. Si DataFlex esta en otra
    ruta, indicar `-DataFlexRoot 'C:\ruta\DataFlex 25.0'`.
-3. Abrir `FutbolWebApp.sws` con DataFlex Studio 25.0.
-4. Registrar la aplicacion web y el directorio virtual `FutbolWebApp` en el equipo.
-5. Compilar y ejecutar `WebApp.src` con F5.
+3. En una base nueva, importar `sql/futbol.sql` y despues
+   `sql/03_tablas_internas.sql` desde MySQL Workbench.
+4. Abrir `FutbolWebApp.sws` y configurar `FutbolDB` en SQL Connection Manager,
+   siguiendo `docs/conexion-mysql.md`.
+5. Registrar la aplicacion web y el directorio virtual `FutbolWebApp` en el equipo.
+6. Compilar y ejecutar `WebApp.src` con F5.
 
 El script de inicializacion copia el motor y los temas incluidos con DataFlex,
-restaura las tablas embebidas iniciales y genera claves locales. Solo crea archivos
-que faltan; no sustituye las tablas ni las claves de un entorno ya configurado.
+restaura las tablas que aun sean embebidas y genera claves locales. Las tablas con
+archivo `.int` ya utilizan MySQL. El script local solo crea archivos que faltan;
+no sustituye las tablas ni las claves de un entorno ya configurado.
 La plantilla inicial utiliza el usuario de desarrollo `admin` y la clave `admin`.
 
 ## Base de datos
@@ -38,6 +64,20 @@ con el nombre de base unificado a `futbol`. Incluye `liga`, `equipo`, `entrenado
 Al importar el script se eliminan y recrean esas tablas en `futbol`; utilizarlo
 como carga inicial, no sobre una base con cambios que se quieran conservar.
 Las conexiones y credenciales de MySQL se configuran en cada equipo y no se publican.
+
+Para configurar la conexion administrada `FutbolDB`, consultar
+[`docs/conexion-mysql.md`](docs/conexion-mysql.md). Se incluye
+`Data/DFConnId.ini.example` como referencia, con un usuario de ejemplo.
+
+Si la base ya estaba importada con la intercalacion original, el script
+`sql/02_compatibilidad_dataflex.sql` adapta las seis tablas conservando los
+registros. En el equipo de desarrollo este ajuste ya se ha comprobado.
+
+`sql/03_tablas_internas.sql` permite reconstruir las cinco tablas internas con
+sus indices y un usuario inicial de desarrollo `admin` / `admin`. Utiliza un hash
+de prueba nuevo; no exporta usuarios, sesiones ni valores del equipo de desarrollo.
+El script conserva las tablas y los usuarios que ya existan. La migracion y sus
+comprobaciones se describen en `docs/migracion-tablas.md`.
 
 ## Flujo Git de la practica
 
