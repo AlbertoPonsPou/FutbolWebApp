@@ -51,6 +51,16 @@ Object oWebApp is a cWebApp
 
                 Object oViewMenu is a cWebMenuItem
                     Set psCaption to C_$View
+
+                    Object oSelectLiga_itm is a cWebMenuItem
+                        Set psCaption to "Ligas"
+
+                        WebRegisterPath ntNavigateBegin oSelectLiga
+
+                        Procedure OnClick
+                            Send NavigatePath
+                        End_Procedure
+                    End_Object
                 End_Object
 
                 Object oSignOut_itm is a cWebMenuItem
@@ -133,6 +143,7 @@ Object oWebApp is a cWebApp
     
     Use Dashboard.wo
     Use ZoomLiga.wo
+    Use SelectLiga.wo
     Set phoDefaultView to oDashboard
 
 End_Object
