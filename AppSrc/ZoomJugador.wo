@@ -6,8 +6,10 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
 
 Use SelectEquipo.wo
+Use SelectPosicion.wo
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use cjugadorDataDictionary.dd
@@ -104,6 +106,24 @@ Object oZoomJugador is a cWebView
         End_Object
     End_Object 
 
+    Object oPosicionesPanel is a cWebPanel
+        Set piColumnCount to 12
+        Set peRegion to prBottom
+        WebSetResponsive piColumnCount rmMobile to 4
+
+        Object oVerPosicionesButton is a cWebButton
+            Set piColumnSpan to 4
+            Set psCaption to "Consultar posiciones"
+
+            // Consulta independiente: no asigna posiciones al jugador.
+            WebRegisterPath ntNavigateForwardCustom oSelectPosicion
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+        End_Object
+    End_Object
+
     Object oActionGroup is a cWebMenuGroup
 
         Object oSaveBtn is a cWebMenuItem
@@ -184,6 +204,22 @@ Object oZoomJugador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Boolean bHasRecord
+        String sNombre sApellido
+
+        Get HasRecord of ojugador_DD to bHasRecord
+        If bHasRecord Begin
+            Get Field_Current_Value of ojugador_DD Field jugador.Nombre to sNombre
+            Get Field_Current_Value of ojugador_DD Field jugador.Apellido to sApellido
+            Move (Trim(sNombre) * Trim(sApellido)) to sNombre
+            Send SetHeaderCaption ("Jugador:" * Trim(sNombre))
+            Send SetBreadcrumbCaption (Trim(sNombre))
+        End
+        Else Begin
+            Send SetHeaderCaption "Nuevo jugador"
+            Send SetBreadcrumbCaption "Nuevo jugador"
+        End
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
