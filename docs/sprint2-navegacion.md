@@ -3,7 +3,9 @@
 Primera implementacion: 08/11/2026. Basada en las dailys del martes 03/11 y
 jueves 05/11. Rama de trabajo: `feature/sprint2-navegacion`, creada desde `develop`.
 Estado: **implementado y compilado; recorridos principales validados en navegador**.
-Quedan pendientes los casos de alta, cambios sin guardar y ventana estrecha.
+Confirmados tambien la ficha nueva de liga, el retorno con cambios sin guardar
+en jugador y las vistas de liga/jugador en ventana estrecha. Quedan pendientes
+las comprobaciones adicionales detalladas al final.
 
 ## Requisitos y cambios
 
@@ -75,6 +77,9 @@ pruebas ni se da por comprobado lo que no se ha confirmado.
 | Equipos desde el dashboard despues de filtrar | Muestra los equipos de ambas ligas; confirmado por Alberto. |
 | Jugador -> Consultar posiciones | Muestra las seis posiciones; captura del alumno. |
 | Volver desde Posiciones al jugador | Conserva su nombre y su equipo; confirmado por Alberto. |
+| Nueva liga sin guardar | Cabecera «Nueva liga», lista vacia y boton de equipos deshabilitado; confirmado por Alberto. |
+| Liga y Jugador en ventana estrecha | Campos, listas y botones accesibles; confirmado por Alberto. |
+| Jugador -> Posiciones -> Jugador durante una edicion | Conserva el nombre modificado sin guardar y el equipo; Descartar cambios recupera el nombre original. Confirmado por Alberto. |
 
 Pepito (ID 5) y Manolito (ID 6) ya estaban en `sql/futbol.sql`, linea 184, y en
 la copia original del script. No son registros creados por las pruebas del Sprint 2.
@@ -84,18 +89,14 @@ arriba validan los recorridos principales; faltan las comprobaciones de abajo.
 
 ## Recorrido de pruebas pendiente
 
-1. Probar una liga sin equipos y una ficha nueva: lista vacia y boton deshabilitado
-   hasta que la liga se haya guardado y vuelto a abrir.
+1. Guardar y reabrir una liga temporal sin equipos: lista vacia y boton habilitado.
 2. En una liga temporal, editar un campo y navegar a Equipos: comprobar guardado
    previo; un dato invalido debe impedir la navegacion. Revisar tambien la vuelta
    tras crear/modificar un equipo temporal de esa liga.
-3. Repetir Jugador -> Posiciones -> Jugador con cambios sin guardar y descartar
-   esos cambios despues de la prueba.
-4. Revisar los titulos de las fichas en modo Nuevo y los titulos de Entrenador y
+3. Revisar los titulos de las otras fichas en modo Nuevo y los titulos de Entrenador y
    Posicion con registros existentes. Comprobar acciones de consulta/edicion.
-5. Revisar el selector Equipo -> Liga tras anadir el DD hijo en ZoomLiga.
+4. Revisar el selector Equipo -> Liga tras anadir el DD hijo en ZoomLiga.
    Las otras relaciones y parejas Select/Zoom ya se validaron en Sprint 1.
-6. Revisar Liga y Jugador en una ventana estrecha, especialmente lista y botones.
 
 Usar registros temporales para las pruebas de escritura y limpiar solo esos
 registros al terminar, conservando los datos del profesor.
