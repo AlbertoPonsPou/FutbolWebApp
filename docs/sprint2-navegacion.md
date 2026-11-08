@@ -2,10 +2,10 @@
 
 Primera implementacion: 08/11/2026. Basada en las dailys del martes 03/11 y
 jueves 05/11. Rama de trabajo: `feature/sprint2-navegacion`, creada desde `develop`.
-Estado: **implementado y compilado; recorridos principales validados en navegador**.
-Confirmados tambien la ficha nueva de liga, el retorno con cambios sin guardar
-en jugador y las vistas de liga/jugador en ventana estrecha. Quedan pendientes
-las comprobaciones adicionales detalladas al final.
+Estado: **implementado y validado para el alcance del Sprint 2**.
+Validacion funcional cerrada el 08/11/2026, con las confirmaciones manuales de
+Alberto y la comprobacion final de los datos. Los cambios estan guardados en la
+rama de trabajo; la integracion y publicacion de la entrega siguen pendientes.
 
 ## Requisitos y cambios
 
@@ -59,7 +59,8 @@ instalado en este equipo.
 - `git diff --check`: sin errores.
 - Revision de las relaciones y servidores de los DD: liga es padre directo de
   equipo; la lista incrustada y el boton emplean sus servidores correspondientes.
-- No se han ejecutado escrituras SQL ni cambiado los datos de partida.
+- La comprobacion final de la base ha sido de solo lectura: siguen las ligas y
+  equipos originales y no quedan los registros temporales de estas pruebas.
 
 ### Validacion manual confirmada por Alberto
 
@@ -80,23 +81,28 @@ pruebas ni se da por comprobado lo que no se ha confirmado.
 | Nueva liga sin guardar | Cabecera «Nueva liga», lista vacia y boton de equipos deshabilitado; confirmado por Alberto. |
 | Liga y Jugador en ventana estrecha | Campos, listas y botones accesibles; confirmado por Alberto. |
 | Jugador -> Posiciones -> Jugador durante una edicion | Conserva el nombre modificado sin guardar y el equipo; Descartar cambios recupera el nombre original. Confirmado por Alberto. |
+| Liga temporal guardada y reabierta sin equipos | Lista vacia y boton de equipos habilitado; confirmado por Alberto. |
+| Guardado antes de Liga -> Equipos | El nombre editado de la liga persiste al reabrirla, aunque no se pulso Guardar antes de navegar; confirmado por Alberto. |
+| Nuevo equipo desde la liga | La liga viene seleccionada en la ficha nueva; confirmado por Alberto. |
+| Actualizacion de la lista incrustada al volver | El equipo nuevo aparece en la ficha de la liga tras guardarlo y volver; confirmado por Alberto. |
 
 Pepito (ID 5) y Manolito (ID 6) ya estaban en `sql/futbol.sql`, linea 184, y en
 la copia original del script. No son registros creados por las pruebas del Sprint 2.
 
-El sprint aun no esta cerrado ni publicado como una version. Los resultados de
-arriba validan los recorridos principales; faltan las comprobaciones de abajo.
+## Estado final de los datos
 
-## Recorrido de pruebas pendiente
+Consulta directa de MySQL al cerrar la validacion: 2 ligas, 6 equipos,
+7 entrenadores, 60 jugadores, 6 posiciones y 0 filas en jugadorposicion.
+Las ligas son LaLiga y Premier League; los seis equipos y sus ligas coinciden
+con los del script original. No se encontraron la liga ni el equipo temporales,
+ni jugadores cuyo nombre contuviera PRUEBA. No fue necesario ejecutar borrados.
 
-1. Guardar y reabrir una liga temporal sin equipos: lista vacia y boton habilitado.
-2. En una liga temporal, editar un campo y navegar a Equipos: comprobar guardado
-   previo; un dato invalido debe impedir la navegacion. Revisar tambien la vuelta
-   tras crear/modificar un equipo temporal de esa liga.
-3. Revisar los titulos de las otras fichas en modo Nuevo y los titulos de Entrenador y
-   Posicion con registros existentes. Comprobar acciones de consulta/edicion.
-4. Revisar el selector Equipo -> Liga tras anadir el DD hijo en ZoomLiga.
-   Las otras relaciones y parejas Select/Zoom ya se validaron en Sprint 1.
+## Alcance de la validacion
 
-Usar registros temporales para las pruebas de escritura y limpiar solo esos
-registros al terminar, conservando los datos del profesor.
+Se han comprobado los recorridos nuevos, los filtros, el retorno, el guardado
+antes de navegar, el refresco de la lista hija y el uso en ventana estrecha.
+La validacion de los CRUD y selectores ya existentes corresponde al Sprint 1
+(`docs/pruebas-vistas.md`); no se ha repetido una regresion completa de esas vistas.
+La tabla anterior enumera las comprobaciones realmente confirmadas: no acredita
+pruebas de errores de guardado con datos invalidos ni una revision visual de cada
+combinacion de titulo, entidad y modo de alta.

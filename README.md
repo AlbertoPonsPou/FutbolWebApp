@@ -16,15 +16,18 @@ Los resultados se detallan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md)
 
 ## Estado del proyecto
 
-El Sprint 2 de navegacion esta iniciado en `feature/sprint2-navegacion`. Incluye la
+El Sprint 2 de navegacion esta implementado y validado en `feature/sprint2-navegacion`. Incluye la
 navegacion Liga -> Equipos, la lista de equipos dentro de la liga, la consulta de
 posiciones desde un jugador y titulos/breadcrumbs segun el registro. La primera
 compilacion termina con 0 errores y 0 advertencias. Alberto ha validado en navegador
 los filtros por liga, la apertura de un equipo, el listado general sin filtro y la
 consulta de posiciones con retorno al jugador, incluso con cambios sin guardar.
-Tambien estan comprobadas la ficha nueva de liga y las vistas en ventana estrecha.
-Faltan las comprobaciones de guardado/navegacion y la revision final detalladas en
-[`docs/sprint2-navegacion.md`](docs/sprint2-navegacion.md).
+Tambien estan comprobadas la ficha nueva de liga, las vistas en ventana estrecha,
+el guardado antes de navegar a Equipos y la actualizacion de la lista de la liga
+tras crear un equipo. La base conserva los registros originales, sin datos de
+prueba pendientes de limpiar. Resultados y alcance de la validacion en
+[`docs/sprint2-navegacion.md`](docs/sprint2-navegacion.md). La integracion y la
+publicacion de la entrega del Sprint 2 siguen pendientes.
 
 Workspace y proyecto movil creados. La plantilla inicial se ha ejecutado en el navegador.
 La base MySQL `futbol` esta creada y la conexion administrada `FutbolDB` se ha
