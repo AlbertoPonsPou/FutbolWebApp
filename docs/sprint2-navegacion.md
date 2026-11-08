@@ -2,7 +2,8 @@
 
 Primera implementacion: 08/11/2026. Basada en las dailys del martes 03/11 y
 jueves 05/11. Rama de trabajo: `feature/sprint2-navegacion`, creada desde `develop`.
-Estado: **implementado y compilado; pendiente de validacion funcional en navegador**.
+Estado: **implementado y compilado; recorridos principales validados en navegador**.
+Quedan pendientes los casos de alta, cambios sin guardar y ventana estrecha.
 
 ## Requisitos y cambios
 
@@ -58,30 +59,43 @@ instalado en este equipo.
   equipo; la lista incrustada y el boton emplean sus servidores correspondientes.
 - No se han ejecutado escrituras SQL ni cambiado los datos de partida.
 
-La compilacion comprueba la sintaxis y las referencias, pero no demuestra que los
-filtros, el retorno o el diseno funcionen durante la ejecucion. Estas pruebas
-quedan pendientes; el sprint aun no esta cerrado ni publicado como una version.
+### Validacion manual confirmada por Alberto
+
+Las siguientes comprobaciones se han realizado en la aplicacion y confirmado en
+este chat. Las capturas muestran la ficha de LaLiga, sus dos listados de equipos,
+la ficha de Real Madrid y el listado de posiciones. No se han automatizado estas
+pruebas ni se da por comprobado lo que no se ha confirmado.
+
+| Comprobacion | Resultado y evidencia |
+| --- | --- |
+| Lista incrustada de LaLiga | Real Madrid, FC Barcelona y Atletico de Madrid; captura del alumno. |
+| Liga -> SelectEquipo filtrado | Los mismos tres equipos; captura del alumno. |
+| SelectEquipo -> ZoomEquipo | Abre Real Madrid, ligado a LaLiga, con titulo y breadcrumbs correctos; captura del alumno. |
+| Volver a Ligas y abrir la otra liga | Filtra sus propios equipos; confirmado por Alberto. |
+| Equipos desde el dashboard despues de filtrar | Muestra los equipos de ambas ligas; confirmado por Alberto. |
+| Jugador -> Consultar posiciones | Muestra las seis posiciones; captura del alumno. |
+| Volver desde Posiciones al jugador | Conserva su nombre y su equipo; confirmado por Alberto. |
+
+Pepito (ID 5) y Manolito (ID 6) ya estaban en `sql/futbol.sql`, linea 184, y en
+la copia original del script. No son registros creados por las pruebas del Sprint 2.
+
+El sprint aun no esta cerrado ni publicado como una version. Los resultados de
+arriba validan los recorridos principales; faltan las comprobaciones de abajo.
 
 ## Recorrido de pruebas pendiente
 
-1. Compilar y ejecutar `WebApp.src` con F5 en el workspace habitual.
-2. Abrir una liga y comprobar nombre en cabecera/breadcrumb y lista de sus equipos.
-3. Pulsar «Ver equipos de esta liga»: deben coincidir exactamente los equipos de
-   la ficha y los del Select. Abrir un equipo y volver usando las migas de pan.
-4. Repetir con la otra liga y, despues, entrar en Equipos desde el dashboard:
-   deben verse todos los equipos, sin conservar el filtro ni el titulo anterior.
-5. Probar una liga sin equipos y una ficha nueva: lista vacia y boton deshabilitado
+1. Probar una liga sin equipos y una ficha nueva: lista vacia y boton deshabilitado
    hasta que la liga se haya guardado y vuelto a abrir.
-6. En una liga temporal, editar un campo y navegar a Equipos: comprobar guardado
+2. En una liga temporal, editar un campo y navegar a Equipos: comprobar guardado
    previo; un dato invalido debe impedir la navegacion. Revisar tambien la vuelta
    tras crear/modificar un equipo temporal de esa liga.
-7. Abrir un jugador y pulsar «Consultar posiciones»: deben aparecer todas las
-   posiciones. Volver y comprobar que el jugador y su equipo no han cambiado.
-   Repetir con cambios sin guardar y descartar esos cambios despues de la prueba.
-8. Revisar los cinco Zoom con un registro existente y en modo Nuevo. Comprobar
-   cabecera, breadcrumb y acciones de consulta/edicion.
-9. Repetir los tres selectores de padre directo y las cinco parejas Select/Zoom.
-10. Revisar Liga y Jugador en una ventana estrecha, especialmente lista y botones.
+3. Repetir Jugador -> Posiciones -> Jugador con cambios sin guardar y descartar
+   esos cambios despues de la prueba.
+4. Revisar los titulos de las fichas en modo Nuevo y los titulos de Entrenador y
+   Posicion con registros existentes. Comprobar acciones de consulta/edicion.
+5. Revisar el selector Equipo -> Liga tras anadir el DD hijo en ZoomLiga.
+   Las otras relaciones y parejas Select/Zoom ya se validaron en Sprint 1.
+6. Revisar Liga y Jugador en una ventana estrecha, especialmente lista y botones.
 
 Usar registros temporales para las pruebas de escritura y limpiar solo esos
 registros al terminar, conservando los datos del profesor.
