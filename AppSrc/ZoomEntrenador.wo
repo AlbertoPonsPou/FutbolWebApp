@@ -184,6 +184,22 @@ Object oZoomEntrenador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Boolean bHasRecord
+        String sNombre sApellido
+
+        Get HasRecord of oentrenador_DD to bHasRecord
+        If bHasRecord Begin
+            Get Field_Current_Value of oentrenador_DD Field entrenador.Nombre to sNombre
+            Get Field_Current_Value of oentrenador_DD Field entrenador.Apellido to sApellido
+            Move (Trim(sNombre) * Trim(sApellido)) to sNombre
+            Send SetHeaderCaption ("Entrenador:" * Trim(sNombre))
+            Send SetBreadcrumbCaption (Trim(sNombre))
+        End
+        Else Begin
+            Send SetHeaderCaption "Nuevo entrenador"
+            Send SetBreadcrumbCaption "Nuevo entrenador"
+        End
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.

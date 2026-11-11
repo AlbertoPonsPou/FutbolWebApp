@@ -127,6 +127,20 @@ Object oZoomPosicion is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Boolean bHasRecord
+        String sNombre
+
+        Get HasRecord of oposicion_DD to bHasRecord
+        If bHasRecord Begin
+            Get Field_Current_Value of oposicion_DD Field posicion.Nombre to sNombre
+            Send SetHeaderCaption ("Posicion:" * Trim(sNombre))
+            Send SetBreadcrumbCaption (Trim(sNombre))
+        End
+        Else Begin
+            Send SetHeaderCaption "Nueva posicion"
+            Send SetBreadcrumbCaption "Nueva posicion"
+        End
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
