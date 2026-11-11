@@ -139,6 +139,19 @@ Object oSelectEquipo is a cWebView
     End_Object 
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        String sLiga
+
+        If (NavigateData.eNavigateType = nfFromParent) Begin
+            Get Field_Current_Value of oliga_DD Field liga.Nombre to sLiga
+            Send SetHeaderCaption ("Equipos de" * Trim(sLiga))
+            Send SetBreadcrumbCaption "Equipos de la liga"
+        End
+        Else Begin
+            // Evitar conservar el titulo del ultimo recorrido desde una liga.
+            Send SetHeaderCaption "Equipos"
+            Send SetBreadcrumbCaption "Equipos"
+        End
+
         WebSet pbRender of oNewButton to True
         WebSet pbRender of oDetailButton to True
 

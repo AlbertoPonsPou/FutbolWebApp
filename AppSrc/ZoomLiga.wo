@@ -7,8 +7,14 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
+Use cWebLabel.pkg
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
+Use cequipoDataDictionary.dd
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -21,6 +27,12 @@ Object oZoomLiga is a cWebView
 
     Object oliga_DD is a cligaDataDictionary
     End_Object 
+
+    // Esta lista hija siempre pertenece a la liga abierta en la ficha.
+    Object oequipo_DD is a cequipoDataDictionary
+        Set DDO_Server to oliga_DD
+        Set Constrain_File to liga.File_Number
+    End_Object
 
     Set Main_DD To oliga_DD
     Set Server  To oliga_DD
@@ -69,6 +81,57 @@ Object oZoomLiga is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object 
+
+        Object oVerEquiposButton is a cWebButton
+            Set piColumnSpan to 4
+            Set piColumnIndex to 0
+            Set psCaption to "Ver equipos de esta liga"
+            Set Server to oliga_DD
+
+            WebRegisterPath ntNavigateForward oSelectEquipo
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                // El padre debe existir y estar guardado antes de buscar sus hijos.
+                Move True to NavigateData.bSaveBeforeNavigate
+            End_Procedure
+
+            Procedure OnNavigateBack Handle hoCallback tWebNavigateData NavigateData
+                Forward Send OnNavigateBack hoCallback NavigateData
+                Send FindFromTop of oEquiposList
+            End_Procedure
+        End_Object
+
+        Object oEquiposLabel is a cWebLabel
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCaption to "Equipos de esta liga"
+        End_Object
+
+        Object oEquiposList is a cWebList
+            Set Server to oequipo_DD
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set piHeight to 250
+            Set pbFillHeight to False
+            Set pbShowHeader to True
+            Set piSortColumn to 0
+
+            Object oEquipoIdColumn is a cWebColumn
+                Entry_Item equipo.ID
+                Set psCaption to "ID"
+                Set piWidth to 100
+            End_Object
+
+            Object oEquipoNombreColumn is a cWebColumn
+                Entry_Item equipo.Nombre
+                Set psCaption to "Equipo"
+                Set piWidth to 700
+            End_Object
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup
@@ -151,6 +214,21 @@ Object oZoomLiga is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        Boolean bHasRecord
+        String sNombre
+
+        Get HasRecord of oliga_DD to bHasRecord
+        If bHasRecord Begin
+            Get Field_Current_Value of oliga_DD Field liga.Nombre to sNombre
+            Send SetHeaderCaption ("Liga:" * Trim(sNombre))
+            Send SetBreadcrumbCaption (Trim(sNombre))
+        End
+        Else Begin
+            Send SetHeaderCaption "Nueva liga"
+            Send SetBreadcrumbCaption "Nueva liga"
+        End
+        WebSet pbEnabled of oVerEquiposButton to bHasRecord
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.

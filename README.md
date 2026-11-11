@@ -2,10 +2,20 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
-## Entrega del Sprint 1
+## Entrega actual: Sprint 2
+
+Version **v2.0.0**, preparada para la entrega del **11/11/2026**.
+Incluye navegacion entre entidades, equipos filtrados por liga, lista de equipos
+en la ficha de liga, consulta de posiciones desde un jugador y titulos contextuales.
+Compilacion: 0 errores y 0 advertencias. Validacion funcional y alcance documentados
+en [`docs/sprint2-navegacion.md`](docs/sprint2-navegacion.md).
+
+Enlace de entrega: https://github.com/AlbertoPonsPou/FutbolWebApp
+
+## Version anterior: Sprint 1
 
 Version final: **v1.0.0**, validada el **30/10/2026**.
-La rama `main` contiene la entrega y `develop` conserva la integracion del desarrollo.
+Esta entrega se conserva en la etiqueta `v1.0.0`.
 
 Enlace de entrega: https://github.com/AlbertoPonsPou/FutbolWebApp
 
@@ -15,6 +25,19 @@ seleccion de relaciones y ventana estrecha se han confirmado manualmente.
 Los resultados se detallan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md).
 
 ## Estado del proyecto
+
+El Sprint 2 de navegacion esta implementado y validado en `feature/sprint2-navegacion`. Incluye la
+navegacion Liga -> Equipos, la lista de equipos dentro de la liga, la consulta de
+posiciones desde un jugador y titulos/breadcrumbs segun el registro. La primera
+compilacion termina con 0 errores y 0 advertencias. Alberto ha validado en navegador
+los filtros por liga, la apertura de un equipo, el listado general sin filtro y la
+consulta de posiciones con retorno al jugador, incluso con cambios sin guardar.
+Tambien estan comprobadas la ficha nueva de liga, las vistas en ventana estrecha,
+el guardado antes de navegar a Equipos y la actualizacion de la lista de la liga
+tras crear un equipo. La base conserva los registros originales, sin datos de
+prueba pendientes de limpiar. Resultados y alcance de la validacion en
+[`docs/sprint2-navegacion.md`](docs/sprint2-navegacion.md). La entrega se identifica
+con la etiqueta `v2.0.0`, siguiendo la integracion feature -> develop -> main.
 
 Workspace y proyecto movil creados. La plantilla inicial se ha ejecutado en el navegador.
 La base MySQL `futbol` esta creada y la conexion administrada `FutbolDB` se ha
