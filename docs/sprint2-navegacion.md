@@ -4,8 +4,13 @@ Primera implementacion: 08/11/2026. Basada en las dailys del martes 03/11 y
 jueves 05/11. Rama de trabajo: `feature/sprint2-navegacion`, creada desde `develop`.
 Estado: **implementado y validado para el alcance del Sprint 2**.
 Validacion funcional cerrada el 08/11/2026, con las confirmaciones manuales de
-Alberto y la comprobacion final de los datos. Los cambios estan guardados en la
-rama de trabajo; la integracion y publicacion de la entrega siguen pendientes.
+Alberto y la comprobacion final de los datos. Entrega del 11/11/2026 identificada
+con la etiqueta `v2.0.0`, mediante integracion feature -> develop -> main.
+
+La daily del 11/11 confirma el uso de `Constrain_File` para la lista incrustada.
+No introduce requisitos nuevos para esta entrega: los contadores y limites de
+equipos se anuncian para el trabajo posterior con DD y el siguiente sprint se
+dedicara a mejoras visuales. Se conserva el codigo funcional ya validado.
 
 ## Requisitos y cambios
 
