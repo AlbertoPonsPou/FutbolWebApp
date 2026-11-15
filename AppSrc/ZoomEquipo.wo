@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
 // ZoomEquipo
 //
 
@@ -20,6 +20,7 @@ Object oZoomEquipo is a cWebView
     Set pbShowCaption to False
     Set Verify_Save_Msg to 0
     Set piMaxWidth to 1024
+    Set psCSSClass to "FootballDetail"
 
     Object oliga_DD is a cligaDataDictionary
     End_Object 
@@ -33,6 +34,7 @@ Object oZoomEquipo is a cWebView
 
 
     Object oWebMainPanel is a cWebPanel
+        Set psCSSClass to "FootballFormPanel"
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
@@ -57,7 +59,7 @@ Object oZoomEquipo is a cWebView
             Set piColumnSpan to 2
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
-            Set psLabel to "LigaID"
+            Set psLabel to "ID de liga"
             Set pbPromptButton to True
 
             WebRegisterPath ntNavigateForward oSelectLiga
@@ -87,7 +89,7 @@ Object oZoomEquipo is a cWebView
 
         Object oSaveBtn is a cWebMenuItem
             Set psCSSClass to "WebSaveMenuItem"
-            Set psCaption to "Save"
+            Set psCaption to "Guardar"
 
             Procedure OnClick
                 Send Request_Save
@@ -97,7 +99,7 @@ Object oZoomEquipo is a cWebView
 
         Object oEditBtn is a cWebMenuItem
             Set psCSSClass to "WebEditMenuItem"
-            Set psCaption to "Edit"
+            Set psCaption to "Editar"
             Procedure OnClick
                 Send ChangeEditMode True
                 Send SetActionButtons
@@ -107,7 +109,7 @@ Object oZoomEquipo is a cWebView
 
         Object oDeleteBtn is a cWebMenuItem
             Set psCSSClass to "WebDeleteMenuItem"
-            Set psCaption to "Delete"
+            Set psCaption to "Eliminar"
             Set peActionDisplay to adMenu
 
             Procedure OnClick
@@ -118,7 +120,7 @@ Object oZoomEquipo is a cWebView
 
         Object oCancelChangesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Refresh"
-            Set psCaption to "Clear Changes"
+            Set psCaption to "Descartar cambios"
             Set peActionDisplay to adMenu
             Procedure OnClick
                 Send RefreshRecord

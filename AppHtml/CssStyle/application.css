@@ -1,20 +1,91 @@
-/* Native dashboard tiles: the whole card is a keyboard-accessible button. */
-.Tile .FootballTileContent {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    width: calc(100% - 10px);
-    padding: 16px;
-    border: 0;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
+/* FutbolWebApp: tema propio sobre Df_Material, sin modificar el motor. */
+body.FootballApp {
+    --df-MainDark: #10283e;
+    --df-MainRegular: #17364e;
+    --df-MainMedium: #21455f;
+    --df-MainLight: #17364e;
+    --df-MainLight2: #badbce;
+    --df-MainLight3: #d8eee5;
+    --df-MainLight4: #edf7f2;
+    --df-BtnBackgroundColor: #087f5b;
+    --df-BtnFocusColor: #066448;
+    --df-BtnHeight: 38px;
+    --df-Grayscale6: #edf2f5;
+    --df-Grayscale7: #f3f6f8;
+    --df-CtrTextColor: #183247;
+    --df-TxtFont: 'Segoe UI', Arial, sans-serif;
+    --df-DtaFont: 'Segoe UI', Arial, sans-serif;
+    --df-FrmBorderColor: #b8c9d2;
+    background: #f3f6f8;
+    color: #183247;
 }
-.Tile .FootballTileContent .Tile_Title,
-.Tile .FootballTileContent .Tile_Subtitle {
-    display: block;
-    position: static;
-    top: auto;
+.FootballApp .WebApp { background: #f3f6f8; }
+.FootballApp .HeaderPanel { box-shadow: 0 3px 12px #10283e15; }
+.FootballApp .HeaderPanel .WebItm_Icon { color: #fff; }
+.FootballApp .Dashboard .TilesGroup { margin-top: 14px; }
+.FootballApp .Dashboard .TilesGroup > .WebCon_Inner { padding: 0 8px; }
+.FootballHero { margin: 24px 16px 8px; }
+.FootballHero section {
+    position: relative; overflow: hidden; box-sizing: border-box;
+    padding: 34px; border-radius: 18px; background: #10283e; color: white;
+    min-height: 186px;
 }
-.FootballTileContent:focus-visible { outline: 3px solid currentColor; outline-offset: -4px; }
+.FootballHero section::after {
+    content: ''; position: absolute; right: -35px; top: -75px;
+    width: 260px; height: 260px; border: 1px solid #ffffff24;
+    border-radius: 50%; box-shadow: 0 0 0 42px #ffffff06, 0 0 0 84px #ffffff04;
+    pointer-events: none;
+}
+.FootballHero .eyebrow { color: #77dfb6; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+.FootballHero h1 { margin: 12px 0 10px; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; letter-spacing: -1px; }
+.FootballHero p { margin: 0; max-width: 500px; color: #c7d6e2; font-size: 14px; line-height: 1.6; position: relative; z-index: 1; }
+.FootballApp .Tile .FootballTileContent {
+    display: flex; flex-direction: column; align-items: flex-start;
+    justify-content: flex-start; box-sizing: border-box;
+    width: calc(100% - 16px); height: 214px; margin: 8px; padding: 22px;
+    background: #fff; color: #183247; border: 1px solid #dfe7ec;
+    border-radius: 14px; box-shadow: 0 4px 14px #10283e06;
+    font: inherit; text-align: left; cursor: pointer;
+    transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.FootballApp .Tile .FootballTileContent:hover {
+    border-color: #37a27e; box-shadow: 0 8px 24px #10283e12; transform: translateY(-2px);
+}
+.FootballApp .Tile .FootballTileContent:focus-visible { outline: 3px solid #087f5b; outline-offset: 2px; }
+.FootballApp .Tile .FootballTileContent .Tile_Title,
+.FootballApp .Tile .FootballTileContent .Tile_Subtitle {
+    display: block; position: static; text-align: left; overflow: visible;
+}
+.FootballApp .Tile .FootballTileContent .Tile_Title { font-size: 20px; font-weight: 650; margin: 14px 0 6px; }
+.FootballApp .Tile .FootballTileContent .Tile_Subtitle { color: #5a6e7c; font-size: 12px; line-height: 1.5; }
+.FootballTileIcon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: #eaf6f0; color: #087f5b; flex-shrink: 0; pointer-events: none; }
+.FootballTileIcon svg { width: 24px; height: 24px; }
+.FootballTileLink { margin-top: auto; padding-top: 14px; color: #087f5b; font-size: 12px; font-weight: 650; }
+.FootballApp .WebList { border-radius: 12px; }
+.FootballApp .WebList .WebList_Head { background: #e7eef3; color: #17364e; }
+.FootballApp .WebList .WebList_Head th { font-weight: 650; }
+.FootballApp .WebList .WebList_Body .WebList_Row { border-bottom-color: #e6edf1; }
+.FootballApp .WebList .WebList_Body .WebList_RowOdd { background: #f8fafb; }
+.FootballApp .WebList .WebList_Body .WebList_Row:hover { background: #eef7f3; }
+.FootballApp .WebList .WebList_Body .WebList_Row.WebList_Selected { background: #d8eee5; color: #103e30; border-left-color: #087f5b; }
+.FootballApp .FootballDetail .FootballFormPanel {
+    margin-top: 20px; background: #fff; border: 1px solid #e0e8ed;
+    border-radius: 14px; box-shadow: 0 4px 18px #10283e05;
+}
+.FootballApp .FootballDetail .WebForm .WebCon_Inner { margin: 8px 14px 12px; }
+.FootballApp .FootballDetail .WebForm label { color: #51697a; font-weight: 600; }
+.FootballApp .FootballDetail .WebForm .WebFrm_Wrapper { background: #f7fafb; border-radius: 6px 6px 0 0; padding: 6px; }
+.FootballApp .WebForm.Web_ReadOnly input { color: #183247; }
+.FootballApp .WebButton button { border-radius: 8px; font-weight: 600; box-shadow: none; }
+.FootballApp .WebButton.Web_Enabled button:focus-visible { outline: 3px solid #17364e; outline-offset: 2px; }
+.FootballApp .FootballDetail .WebLabel { color: #17364e; font-weight: 650; }
+@media (max-width: 600px) {
+    .FootballHero { margin: 14px 10px 4px; }
+    .FootballHero section { padding: 24px; min-height: 160px; }
+    .FootballApp .Tile .FootballTileContent { height: 194px; padding: 18px; }
+    .FootballApp .FootballDetail .FootballFormPanel { margin-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .FootballApp .Tile .FootballTileContent { transition: none; }
+    .FootballApp .Tile .FootballTileContent:hover { transform: none; }
+}
