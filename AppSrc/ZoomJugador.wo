@@ -22,6 +22,7 @@ Object oZoomJugador is a cWebView
     Set pbShowCaption to False
     Set Verify_Save_Msg to 0
     Set piMaxWidth to 1024
+    Set psCSSClass to "FootballDetail"
 
     Object oliga_DD is a cligaDataDictionary
     End_Object
@@ -39,6 +40,7 @@ Object oZoomJugador is a cWebView
 
 
     Object oWebMainPanel is a cWebPanel
+        Set psCSSClass to "FootballFormPanel"
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
 
