@@ -22,6 +22,17 @@ body.FootballApp {
 .FootballApp .WebApp { background: #f3f6f8; }
 .FootballApp .HeaderPanel { box-shadow: 0 3px 12px #10283e15; }
 .FootballApp .HeaderPanel .WebItm_Icon { color: #fff; }
+
+/* Los iconos de DataFlex definen el color en el pseudoelemento. */
+.FootballApp .HeaderPanel.WebPanel .WebContainer .WebButton:is(.WebMenuButton, .WebBack_Icon) button::before,
+.FootballApp .HeaderPanel.WebPanel .WebActionBar.WebToolBar .WebBarRoot > li > div > .WebItm_Icon::before {
+    color: #f5f5f5;
+}
+.FootballApp .HeaderPanel .WebButton:is(.WebMenuButton, .WebBack_Icon) button:focus-visible,
+.FootballApp .HeaderPanel .WebActionBar .WebBarRoot > li:focus-visible {
+    outline: 2px solid #f5f5f5;
+    outline-offset: -2px;
+}
 .FootballApp .Dashboard .TilesGroup { margin-top: 14px; }
 .FootballApp .Dashboard .TilesGroup > .WebCon_Inner { padding: 0 8px; }
 .FootballHero { margin: 24px 16px 8px; }
@@ -89,3 +100,111 @@ body.FootballApp {
     .FootballApp .Tile .FootballTileContent { transition: none; }
     .FootballApp .Tile .FootballTileContent:hover { transform: none; }
 }
+
+/* Selector de aspecto de la cabecera */
+.FootballApp .HeaderPanel.WebPanel .WebContainer .WebControl.FootballThemeToggle button {
+    --football-theme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M20.8 15.4A8.6 8.6 0 0 1 8.6 3.2a9 9 0 1 0 12.2 12.2Z'/%3E%3C/svg%3E");
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 34px;
+    height: 34px;
+    min-height: 0;
+    margin: 0 auto;
+    padding: 0;
+    border: 1px solid #ffffff55;
+    background: #ffffff12;
+    color: #fff;
+    font-size: 0;
+}
+.FootballApp .HeaderPanel .FootballThemeToggle button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    background: currentColor;
+    mask: var(--football-theme-icon) center / contain no-repeat;
+}
+.FootballApp .HeaderPanel .FootballThemeToggle button::after {
+    content: none;
+}
+.FootballDark .FootballApp .HeaderPanel.WebPanel .WebContainer .WebControl.FootballThemeToggle button {
+    --football-theme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5'/%3E%3C/svg%3E");
+}
+.FootballApp .HeaderPanel.WebPanel .WebContainer .WebControl.FootballThemeToggle button:hover,
+.FootballApp .HeaderPanel.WebPanel .WebContainer .WebControl.FootballThemeToggle button:focus-visible {
+    background: #ffffff26;
+    color: #fff;
+}
+.FootballApp .HeaderPanel .FootballThemeToggle button:focus-visible {
+    outline: 2px solid #9bf2d2;
+    outline-offset: 2px;
+}
+
+::view-transition-group(root),
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 240ms;
+    animation-timing-function: ease-in-out;
+}
+
+.FootballDark .FootballApp {
+    --df-MainDark: #111111;
+    --df-MainRegular: #202020;
+    --df-MainMedium: #343434;
+    --df-MainLight: #1b1b1b;
+    --df-MainLight2: #666666;
+    --df-MainLight3: #424242;
+    --df-MainLight4: #252525;
+    --df-Grayscale1: #f2f2f2;
+    --df-Grayscale2: #cccccc;
+    --df-Grayscale3: #aaaaaa;
+    --df-Grayscale4: #707070;
+    --df-Grayscale5: #434343;
+    --df-Grayscale6: #101010;
+    --df-Grayscale7: #191919;
+    --df-Grayscale8: #232323;
+    --df-FrmBackgroundColor: #1e1e1e;
+    --df-FrmBorderColor: #767676;
+    --df-CtrTextColor: #f2f2f2;
+    --df-BtnBackgroundColor: #404040;
+    --df-BtnFocusColor: #505050;
+    color-scheme: dark;
+    background: #101010;
+    color: #f2f2f2;
+}
+.FootballDark .FootballApp .WebApp { background: #101010; color: #f2f2f2; }
+.FootballDark .FootballApp .HeaderPanel .WebCrumb_Caption,
+.FootballDark .FootballApp .HeaderPanel .WebCrumb_DropDownBtn::after {
+    color: #f2f2f2;
+}
+.FootballDark .FootballApp .FootballHero section { background: #1b1b1b; }
+.FootballDark .FootballApp .FootballHero .eyebrow { color: #ededed; }
+.FootballDark .FootballApp .FootballHero p { color: #cccccc; }
+.FootballDark .FootballApp .HeaderPanel .FootballThemeToggle button:focus-visible { outline-color: #f5f5f5; }
+.FootballDark .FootballApp .Tile .FootballTileContent,
+.FootballDark .FootballApp .FootballDetail .FootballFormPanel {
+    background: #232323;
+    color: #f2f2f2;
+    border-color: #434343;
+}
+.FootballDark .FootballApp .Tile .FootballTileContent .Tile_Subtitle,
+.FootballDark .FootballApp .FootballDetail .WebForm label,
+.FootballDark .FootballApp .FootballDetail .WebLabel { color: #cccccc; }
+.FootballDark .FootballApp .FootballTileIcon { background: #343434; color: #ededed; }
+.FootballDark .FootballApp .FootballTileLink { color: #ededed; }
+.FootballDark .FootballApp .WebList .WebList_Head { background: #2c2c2c; color: #f2f2f2; }
+.FootballDark .FootballApp .WebList .WebList_Body .WebList_Row { border-bottom-color: #434343; }
+.FootballDark .FootballApp .WebList .WebList_Body .WebList_RowOdd { background: #191919; }
+.FootballDark .FootballApp .WebList .WebList_Body .WebList_Row:hover { background: #303030; }
+.FootballDark .FootballApp .WebList .WebList_Body .WebList_Row.WebList_Selected {
+    background: #414141;
+    color: #ffffff;
+    border-left-color: #ededed;
+}
+.FootballDark .FootballApp .FootballDetail .WebForm .WebFrm_Wrapper { background: #1e1e1e; }
+.FootballDark .FootballApp .WebForm.Web_ReadOnly input { color: #f2f2f2; }
+.FootballDark .FootballApp .WebButton.Web_Enabled button:focus-visible,
+.FootballDark .FootballApp .Tile .FootballTileContent:focus-visible { outline-color: #ededed; }

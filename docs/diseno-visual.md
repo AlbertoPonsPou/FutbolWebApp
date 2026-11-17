@@ -1,38 +1,54 @@
-# Propuesta visual: panel deportivo
+# Mejoras visuales de FutbolWebApp
 
-Primera propuesta en `feature/mejoras-visuales`. Se mantiene la navegacion del
-Sprint 2 y se personaliza el tema mediante `AppHtml/CssStyle/application.css`.
-No se modifican el motor ni los estilos originales de DataFlex.
+## Inicio, listados y fichas
 
-## Cambios
+- El inicio presenta cinco tarjetas para ligas, equipos, entrenadores,
+  jugadores y posiciones. Cada tarjeta incluye un icono y abre su listado.
+- Las fichas agrupan los campos en paneles, y las tablas distinguen las filas
+  alternas y el registro seleccionado.
+- Las acciones se muestran en castellano. El botón «Gestionar equipos de esta
+  liga» abre el listado filtrado por la liga actual.
+- Las tarjetas y fichas se adaptan a pantallas estrechas y muestran el foco
+  al navegar con el teclado.
 
-- Azul marino para la identidad y verde para acciones y seleccion.
-- Bienvenida en el inicio y cinco tarjetas con iconos SVG propios, descripcion
-  y acceso mediante botones nativos utilizables con teclado.
-- Fondo claro, bordes suaves, formularios sobre tarjetas y etiquetas uniformes.
-- Tablas con filas alternas y seleccion diferenciada.
-- Acciones de las vistas traducidas al castellano y boton de liga renombrado a
-  «Gestionar equipos de esta liga».
-- Estilos para pantalla estrecha, foco de teclado visible, soporte de movimiento
-  reducido y zoom de navegador permitido.
-- Titulo de la pagina y version del CSS para renovar la cache.
+## Tema claro y oscuro
 
-## Verificacion
+El botón de luna y sol de la cabecera alterna el tema en todas las vistas.
+El tema oscuro usa negro y gris carbón en fondos, tablas, tarjetas y formularios.
+Los iconos de la cabecera tienen contraste en ambos temas.
 
-Compilacion aislada con DataFlex 25.0 x64: 0 errores y 0 advertencias.
-La actualizacion del ejecutable del workspace habitual queda pendiente: el
-servidor mantiene WebApp.exe abierto y el intento de detener el servicio ha
-devuelto un error de permisos. El servicio sigue funcionando con el ejecutable
-anterior. No se han cambiado los datos ni publicado esta propuesta.
+La preferencia se guarda en el navegador. El cambio usa una transición de
+240 ms en navegadores compatibles y es inmediato si el usuario prefiere
+reducir el movimiento. Los estilos y la lógica están en
+[`application.css`](../AppHtml/CssStyle/application.css) y
+[`theme.js`](../AppHtml/theme.js).
 
-Para revisar el resultado completo: abrir FutbolWebApp.sws en DataFlex Studio,
-compilar/ejecutar con F5 y recargar el navegador con Ctrl+F5. Revisar inicio,
-listado de ligas, ficha de liga y ficha de jugador en escritorio y ventana
-estrecha. La revision visual completa queda pendiente de cargar el ejecutable.
+## Data Dictionary en el proyecto
 
-## Continuacion del estudio de Data Dictionary
+- **Estructura y relaciones.** En [`cequipoDataDictionary.dd`](../DDSrc/cequipoDataDictionary.dd),
+  `Construct_Object` llama primero al constructor de la clase padre.
+  `Main_File` identifica la tabla `equipo`, `Add_Server_File` declara a
+  `liga` como tabla padre y `Add_Client_File` registra los hijos.
+- **Valores y cambios del formulario.** El DDO (objeto Data Dictionary) mantiene
+  su propio registro actual. En [`ZoomLiga.wo`](../AppSrc/ZoomLiga.wo),
+  `Field_Current_Value` lee el nombre de la liga para el título. Para que una
+  edición por código quede marcada para el guardado se usa `Field_Changed_Value`.
+- **Opciones y validación.** `Field_Options` configura los campos de la tabla
+  propia. `Foreign_Field_Option` fija el comportamiento de los campos de tablas
+  relacionadas. Por ejemplo, `DD_DISPLAYONLY` sirve para mostrar valores que no
+  se editan desde el formulario. Validar un campo al guardar y bloquearlo en
+  pantalla son reglas distintas.
+- **Relación opcional con equipo.** En [`centrenadorDataDictionary.dd`](../DDSrc/centrenadorDataDictionary.dd),
+  `ParentNullAllowed` permite un entrenador sin equipo. Al guardar,
+  `Save_Main_File` marca `EquipoID` como NULL mediante `DF_FIELD_IS_NULL`
+  cuando no hay equipo elegido.
 
-La mejora visual se acompana del estudio del constructor de DataDictionary,
-Field_Options, buffers, Field_Current_Value y Field_Changed_Value, validaciones
-y tratamiento de NULL. No se incorporan aun contadores de equipos ni asignacion
-de posiciones: esas reglas de negocio se anunciaron para sesiones posteriores.
+## Cómo revisar la entrega
+
+Abrir `FutbolWebApp.sws` con DataFlex Studio, compilar y ejecutar con F5, e
+iniciar sesión. Alternar el tema desde la cabecera, abrir un listado y una
+ficha y recargar la página para comprobar que se conserva la preferencia.
+
+El código DataFlex del selector compiló en una copia aislada con 0 errores
+y 0 advertencias. Se comprobó que el servidor local entrega los archivos
+actualizados del tema.

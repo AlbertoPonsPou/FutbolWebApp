@@ -2,7 +2,15 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
-## Entrega actual: Sprint 2
+## Entrega del 17/11/2026: mejoras visuales y Data Dictionary
+
+Versión **v3.0.0**. Incluye el nuevo diseño del inicio, los listados y las
+fichas, y un botón en la cabecera para alternar entre tema claro y oscuro.
+La preferencia de tema se conserva al recargar la página.
+El diseño y los ejemplos de Data Dictionary se describen en
+[`docs/diseno-visual.md`](docs/diseno-visual.md).
+
+## Entrega anterior: Sprint 2
 
 Version **v2.0.0**, preparada para la entrega del **11/11/2026**.
 Incluye navegacion entre entidades, equipos filtrados por liga, lista de equipos
