@@ -1,0 +1,21 @@
+Use DataDict.pkg
+
+// La descripcion conserva textos existentes, incluidos los de mas de 10 letras.
+// CodeMast.Code sigue siendo la clave corta de las tablas internas de DataFlex.
+Object oNacionalidadesVT is a CodeValidationTable
+    Set Type_Value to "NACIONAL"
+    Set Code_Field to 3
+    Set Allow_Blank_State to True
+
+    Function Validate_Value String sNacionalidad Returns Integer
+        Variant[][] aValores
+        Integer i
+
+        If (Trim(sNacionalidad) = "") Function_Return 0
+        Get TableData to aValores
+        For i from 0 to (SizeOfArray(aValores) - 1)
+            If (sNacionalidad = String(aValores[i][0])) Function_Return 0
+        Loop
+        Function_Return 1
+    End_Function
+End_Object

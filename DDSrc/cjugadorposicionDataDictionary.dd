@@ -8,7 +8,12 @@ Class cjugadorposicionDataDictionary is a DataDictionary
     
     Procedure Construct_Object
         Forward Send Construct_Object
+        Set Protect_Key_State to True
         Set Main_File to jugadorposicion.File_Number
+        Set Key_Field_State Field jugadorposicion.ID to True
+        Set Field_Option Field jugadorposicion.ID DD_DISPLAYONLY to True
+        Set Field_Option Field jugadorposicion.JugadorID DD_REQUIRED to True
+        Set Field_Option Field jugadorposicion.PosicionID DD_REQUIRED to True
 
         Set Add_Server_File to jugador.File_Number
         Set Add_Server_File to posicion.File_Number

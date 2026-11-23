@@ -1,5 +1,6 @@
 Use DataDict.pkg
 Use cli.pkg
+Use Nacionalidades.pkg
 
 Open jugador
 Open jugadorposicion
@@ -9,11 +10,19 @@ Class cjugadorDataDictionary is a DataDictionary
     
     Procedure Construct_Object
         Forward Send Construct_Object
+        Set Protect_Key_State to True
         Set Main_File to jugador.File_Number
+        Set Key_Field_State Field jugador.ID to True
+        Set Field_Option Field jugador.ID DD_DISPLAYONLY to True
+        Set Field_Option Field jugador.Nombre DD_COMMIT to True
+        Set Field_Option Field jugador.Apellido DD_COMMIT to True
+        Set Field_Option Field jugador.Nombre DD_REQUIRED to True
+        Set Field_Option Field jugador.Apellido DD_REQUIRED to True
         Set Cascade_Delete_State to False
 
         Set Add_Server_File to equipo.File_Number
         Set ParentNullAllowed equipo.File_Number to True
+        Set Field_Value_Table Field jugador.Nacionalidad to oNacionalidadesVT
 
         Set Add_Client_File to jugadorposicion.File_Number
 
@@ -30,5 +39,9 @@ Class cjugadorDataDictionary is a DataDictionary
         Set_Attribute DF_FIELD_IS_NULL of jugador.File_Number iEquipoField to (equipo.ID = 0)
         Forward Send Save_Main_File
     End_Procedure
+
+    Function Field_CommitNoEnterOnIndex Integer iField Returns Boolean
+        Function_Return True
+    End_Function
 
 End_Class
