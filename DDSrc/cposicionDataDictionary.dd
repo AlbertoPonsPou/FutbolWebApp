@@ -7,7 +7,12 @@ Class cposicionDataDictionary is a DataDictionary
     
     Procedure Construct_Object
         Forward Send Construct_Object
+        Set Protect_Key_State to True
         Set Main_File to posicion.File_Number
+        Set Key_Field_State Field posicion.ID to True
+        Set Field_Option Field posicion.ID DD_DISPLAYONLY to True
+        Set Field_Option Field posicion.Nombre DD_COMMIT to True
+        Set Field_Option Field posicion.Nombre DD_REQUIRED to True
         Set Cascade_Delete_State to False
 
         Set Add_Client_File to jugadorposicion.File_Number
@@ -18,5 +23,9 @@ Class cposicionDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
     End_Procedure
+
+    Function Field_CommitNoEnterOnIndex Integer iField Returns Boolean
+        Function_Return True
+    End_Function
 
 End_Class

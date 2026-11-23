@@ -9,7 +9,13 @@ Class cequipoDataDictionary is a DataDictionary
     
     Procedure Construct_Object
         Forward Send Construct_Object
+        Set Protect_Key_State to True
         Set Main_File to equipo.File_Number
+        Set Key_Field_State Field equipo.ID to True
+        Set Field_Option Field equipo.ID DD_DISPLAYONLY to True
+        Set Field_Option Field equipo.Nombre DD_COMMIT to True
+        Set Field_Option Field equipo.Nombre DD_REQUIRED to True
+        Set Field_Option Field equipo.LigaID DD_REQUIRED to True
         Set Cascade_Delete_State to False
 
         Set Add_Server_File to liga.File_Number
@@ -23,5 +29,24 @@ Class cequipoDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
     End_Procedure
+
+    // El framework carga la liga antigua en Backout y la nueva en Update.
+    // Ambos cambios pertenecen a la transaccion de Request_Save.
+    Procedure Backout
+        Forward Send Backout
+        Decrement liga.Equipos
+    End_Procedure
+
+    Procedure Update
+        Forward Send Update
+        Increment liga.Equipos
+        If (liga.Equipos > liga.EquiposMax) Begin
+            Error DFERR_OPERATOR "La liga de destino ha alcanzado su maximo de equipos."
+        End
+    End_Procedure
+
+    Function Field_CommitNoEnterOnIndex Integer iField Returns Boolean
+        Function_Return True
+    End_Function
 
 End_Class

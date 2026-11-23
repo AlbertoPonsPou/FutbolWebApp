@@ -7,8 +7,17 @@ Class cligaDataDictionary is a DataDictionary
     
     Procedure Construct_Object
         Forward Send Construct_Object
+        Set Protect_Key_State to True
         Set Main_File to liga.File_Number
+        Set Key_Field_State Field liga.ID to True
+        Set Field_Option Field liga.ID DD_DISPLAYONLY to True
+        Set Field_Option Field liga.Nombre DD_COMMIT to True
+        Set Field_Option Field liga.Nombre DD_REQUIRED to True
+        Set Field_Option Field liga.Pais DD_REQUIRED to True
+        Set Field_Option Field liga.Equipos DD_REQUIRED to True
+        Set Field_Option Field liga.EquiposMax DD_REQUIRED to True
         Set Cascade_Delete_State to False
+        Set Field_Option Field liga.Equipos DD_DISPLAYONLY to True
 
         Set Add_Client_File to equipo.File_Number
 
@@ -18,5 +27,27 @@ Class cligaDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
     End_Procedure
+
+    Procedure Field_Defaults
+        Forward Send Field_Defaults
+        Set Field_Changed_Value Field liga.Equipos to 0
+        Set Field_Changed_Value Field liga.EquiposMax to 20
+    End_Procedure
+
+    Function Validate_Save Returns Integer
+        Integer iError
+        Forward Get Validate_Save to iError
+        If iError Function_Return iError
+
+        If (liga.Equipos < 0 or liga.EquiposMax < 1 or liga.Equipos > liga.EquiposMax) Begin
+            Error DFERR_OPERATOR "El numero de equipos debe estar entre cero y el maximo de la liga."
+            Function_Return 1
+        End
+        Function_Return 0
+    End_Function
+
+    Function Field_CommitNoEnterOnIndex Integer iField Returns Boolean
+        Function_Return True
+    End_Function
 
 End_Class
