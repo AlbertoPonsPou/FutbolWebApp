@@ -2,6 +2,14 @@
 
 Practica de DAM: aplicacion web movil de futbol con DataFlex 2025 (25.0) y MySQL 8.
 
+## Entrega del 23/11/2026: Sprint 4
+
+Versión **v4.0.0**. Incluye reglas de Data Dictionary, nacionalidades mediante CodeMast y CodeType,
+botón Despedir y actualización del contador al cambiar un equipo de liga.
+Antes de ejecutar esta versión, aplicar `sql/04_sprint4_diccionarios.sql`
+y compilar el proyecto. Alcance y comprobaciones en
+[`docs/sprint4-diccionarios.md`](docs/sprint4-diccionarios.md).
+
 ## Entrega del 17/11/2026: mejoras visuales y Data Dictionary
 
 Versión **v3.0.0**. Incluye el nuevo diseño del inicio, los listados y las
@@ -34,7 +42,12 @@ Los resultados se detallan en [`docs/pruebas-vistas.md`](docs/pruebas-vistas.md)
 
 ## Estado del proyecto
 
-El Sprint 2 de navegacion esta implementado y validado en `feature/sprint2-navegacion`. Incluye la
+La versión actual incluye el Sprint 4 y la gestión de contadores de equipos por
+liga, con 42 comprobaciones de datos sin fallos y compilación DataFlex 25.0 x64
+sin errores ni advertencias. La preparación de la base y el alcance de la
+validación se detallan en [`docs/sprint4-diccionarios.md`](docs/sprint4-diccionarios.md).
+
+La navegación del Sprint 2 se implementó y validó en `feature/sprint2-navegacion`. Incluye la
 navegacion Liga -> Equipos, la lista de equipos dentro de la liga, la consulta de
 posiciones desde un jugador y titulos/breadcrumbs segun el registro. La primera
 compilacion termina con 0 errores y 0 advertencias. Alberto ha validado en navegador
